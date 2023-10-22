@@ -213,27 +213,54 @@ However, if you're in a directory that isn't part of a Git repository, you have 
 
 - Manage Git configuration using the `git config` command. Configure user details, default behaviors, and more.
 
-**Scenario 7: Plumbing and Other Commands**
+8. To set up and use custom pre-commit and post-commit hooks in a Git repository, you'll need to create scripts and configure the Git hooks directory. Here's a step-by-step guide:
 
-- These commands are less commonly used directly in everyday Git workflows and are typically used for more advanced or specific tasks.
-
-**Scenario 8: Porcelain Commands**
-
-- These commands are commonly used in everyday Git workflows and are discussed in other scenarios as well.
-
-**Scenario 9: Aliases**
-
-- Define and use Git aliases to create shortcuts for commonly used commands. For example:
+1. **Create a Git Hooks Directory**:
+   - Start by creating a `.git/hooks` directory in your Git repository. This directory will hold your custom hooks scripts. You only need to do this step if the directory doesn't already exist.
 
    ```bash
-   git config --global alias.co checkout
+   mkdir -p .git/hooks
    ```
 
-   This creates an alias, so you can use `git co` instead of `git checkout`.
+2. **Create a Pre-Commit Hook**:
+   - In the `.git/hooks` directory, create a file named `pre-commit` (no file extension).
+   - Add your pre-commit script to this file. The script should perform actions you want to run before committing, such as code linting or running tests. Here's an example of a simple pre-commit hook that checks for whitespace errors in staged files using a tool like `lint-staged`:
 
-**Scenario 10: Hooks**
+   ```bash
+   #!/bin/sh
+   lint-staged
+   ```
 
-- Set up and manage Git hooks for custom actions and automation in your repository. Use `git config --local core.hooksPath` to specify the path to the directory containing your custom hooks.
+   Make sure to make the script executable:
 
-Remember that effective learning comes through practice and real-world usage. Experiment with these commands and scenarios in your own Git repositories to gain a deeper understanding of how Git works.
+   ```bash
+   chmod +x .git/hooks/pre-commit
+   ```
 
+3. **Create a Post-Commit Hook** (Optional):
+   - If you want to create a post-commit hook to run actions after a commit, create a file named `post-commit` in the `.git/hooks` directory. The script should perform actions you want to run after a commit. Here's an example of a simple post-commit hook that sends a notification after each commit:
+
+   ```bash
+   #!/bin/sh
+   echo "Commit complete! Sending notification..."
+   # Add your notification logic here
+   ```
+
+   Make it executable:
+
+   ```bash
+   chmod +x .git/hooks/post-commit
+   ```
+
+4. **Test the Hooks**:
+   - You can test your hooks by making a new commit. When you run `git commit`, the pre-commit hook will execute before the commit is finalized, and the post-commit hook (if you created one) will execute after the commit.
+
+   ```bash
+   git commit -m "Your commit message"
+   ```
+
+5. **Customize Hooks as Needed**:
+   - You can further customize your hooks to perform specific actions, such as running tests, formatting code, or sending notifications.
+   - Always ensure that your hooks return an exit status of 0 to allow the commit to proceed or a non-zero exit status to prevent the commit, based on the conditions you define in your scripts.
+
+By setting up and using Git hooks in this way, you can automate processes and enforce best practices in your Git workflow. The example provided is a starting point, and you can expand it to suit the specific needs of your project.
