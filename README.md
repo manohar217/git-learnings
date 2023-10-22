@@ -112,7 +112,7 @@ However, if you're in a directory that isn't part of a Git repository, you have 
    ```
 
 5. Set the upstream branch for a local branch:
-
+   (The git branch --set-upstream-to command is used to set up a tracking relationship between a local branch and a remote branch. To use it, you typically specify the remote branch as the upstream, like this:)
    ```bash
    git branch --set-upstream-to=origin/<remote_branch> <local_branch>
    ```
