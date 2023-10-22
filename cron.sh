@@ -1,4 +1,5 @@
 #!/bin/bash
+cd /root/git-learnings
 history >> History.txt
 git add . 
 git commit -m "Learnings" 
