@@ -204,7 +204,7 @@ However, if you're in a directory that isn't part of a Git repository, you have 
    ```
 
 7. Clone a repository as a mirror:
-
+   (The git clone --mirror command is used to create a "bare" mirror clone of a Git repository. A mirror clone contains all the objects and references from the source repository, including all branches, tags, and commits. It's typically used for specific purposes like maintaining an exact copy of a repository, including all its history, for backup, migration, or mirroring purposes)
    ```bash
    git clone --mirror <repository_URL>
    ```
