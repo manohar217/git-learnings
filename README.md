@@ -264,3 +264,26 @@ However, if you're in a directory that isn't part of a Git repository, you have 
    - Always ensure that your hooks return an exit status of 0 to allow the commit to proceed or a non-zero exit status to prevent the commit, based on the conditions you define in your scripts.
 
 By setting up and using Git hooks in this way, you can automate processes and enforce best practices in your Git workflow. The example provided is a starting point, and you can expand it to suit the specific needs of your project.
+
+6. **git blame**
+   The git blame command in Git is used to display the author and revision information for each line of a file. It is a powerful tool for tracking changes to a file and identifying who made each change. The output of git blame shows the commit hash, author, date, and the specific line that was last modified for each line of the file.
+  ```bash
+   git blame <file>
+
+   ```
+7. **git fetch**
+   The git fetch command in Git is used to update your local repository with changes from a remote repository. However, unlike git pull, it doesn't automatically merge the changes into your current branch. Instead, it retrieves the changes from the remote repository and stores them in your local repository, allowing you to review the changes before merging them.
+   ```bash
+   git fetch origin
+   ```
+
+8.**git Alias**
+   he git config --global alias command is used to create custom aliases for Git commands. Aliases allow you to define shortcuts for longer or frequently used Git commands, making your Git workflow more efficient. With aliases, you can use shorter and more memorable names for common operations.
+   ```bash
+   git config --global alias.<alias> <command>
+
+   ```
+
+   ```bash
+   git config --global alias.st status
+   ```
